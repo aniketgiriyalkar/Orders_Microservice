@@ -16,6 +16,8 @@ Generating an order microservice
 <img height="600" src="https://github.com/aniketgiriyalkar/Orders_Microservice/blob/master/OrdersSchema.png">
 <br>
 
+
+
 ### Sequelize 
 - Sequelize is a promise-based Node.js ORM for Postgres and other SQL databases. It features solid transaction support, relations, eager and lazy loading, read replication and more.
 - An ORM library is a completely ordinary library written in your language of choice that encapsulates the code needed to manipulate the data, so you don't use SQL anymore; you interact directly with an object in the same language you're using. 
@@ -499,4 +501,80 @@ describe('Order API', () => {
 - We see that the new tests use .post(), .put(), and .del() methods, and that the body of a test request can be defined within .send().
 - We see that all the six passing tests and have the test coverage for the express API!
 
-#
+### Swagger UI Express
+- Swagger is a set of open-source tools built around the OpenAPI specification that can help you design, build, document and consume REST APIs
+- This module allows you to serve auto-generated swagger-ui generated API docs from express based on a swagger.json file.
+- The result is living documentation for your API hosted from your API server via a route.
+```
+npm i swagger-jsdoc swagger-ui-express
+```
+- In the server.js file replace the existing file by the following code:
+```
+const express = require('express');
+const routes = require('./routes');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+const swaggerJsDoc = require('swagger-jsdoc'); // to bind swagger with express and show ui provided by swagger js-doc
+const swaggerUi = require('swagger-ui-express'); // for api documentation
+
+const PORT = process.env.PORT || 3000;
+// Extended: https://swagger.io/specification/#infoObject
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Swagger Express API',
+            version: '1.0.0'
+        },       
+    }, 
+    // path to api docs
+    apis: ["./routes/index.js"]
+};
+
+const swaggerSpec = swaggerJsDoc(swaggerOptions);
+
+const app = express();
+app.use(bodyParser.json())
+app.use(logger('dev'))
+
+app.use('/ecommerce', routes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
+
+module.exports = app
+```
+- Test the link http://localhost:3000/api-docs/ to see if the initial setup goes through correctly.
+
+- Next refer documentation to correctly view the documented APIs on the above link. Attaching a sample code of a POST request.
+```
+/**  
+ * @swagger 
+ * /ecommerce/orders:
+ *    post:
+ *      summary: create new order
+ *      description: creates a new order
+ *      requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *               properties:
+ *                 customerId:
+ *                   type: string
+ *                   description: customer Id of the customer
+ *                 customerName:
+ *                   type: string
+ *                   description: name of the customer
+ *                 customerEmail:
+ *                   type: string
+ *                   description: email of the customer
+ *      responses:
+ *        201:
+ *          description: order created successfully
+ *        422:
+ *          description: order already exists
+ */
+```
+- The following figure indicates that swagger is successfully setup for all the api's that are created:
+<br>
+<img height="600" src="https://github.com/aniketgiriyalkar/Orders_Microservice/blob/master/OrdersSchema.png">
+<br>
