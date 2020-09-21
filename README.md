@@ -1,4 +1,4 @@
-# Orders Processing Service
+# Order Processing Service
 Generating an order microservice
 
 
@@ -376,6 +376,7 @@ router.post('/orders', controllers.createOrders_Info)
 - If your manual testing goes well, it's time to start building automated unit tests.
 
 ### Logging
+- Logging is important to triage the issue occured in staging or higher env.
 - Its a good point to integrate better logging. Right now if we check out terminal when we hit http://localhost:3000/ecommerce/orders/2, we will see the raw SQL that was executed. For debugging purposes and overall better logging, let's install an Express middleware called "morgan" using the command "npm install morgan"
 
 - Modify your server.js file to use Morgan (and also add module.exports = app, which we will be using later in testing)
