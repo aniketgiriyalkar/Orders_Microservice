@@ -576,5 +576,5 @@ module.exports = app
 ```
 - The following figure indicates that swagger is successfully setup for all the api's that are created:
 <br>
-<img height="600" src="https://github.com/aniketgiriyalkar/Orders_Microservice/blob/master/OrdersSchema.png">
+<img height="600" src="https://github.com/aniketgiriyalkar/Orders_Microservice/blob/master/swaggerImpl.PNG">
 <br>
