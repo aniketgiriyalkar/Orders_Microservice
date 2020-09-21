@@ -13,7 +13,7 @@ Generating an order microservice
 - Each order item can have multiple Payment methods, meaning the payment can be split over multiple cards. This is ensured by itemId foreign key(via a one to many relationship). paymentMethod, confirmationNumber, paymentAmount, cardNumber and cardCVV are some columns of this table.
 - The schema is attached as shown below:
 <br>
-<img height="600" src="https://github.com/aniketgiriyalkar/Dice-app/blob/master/DiceAppOutput.PNG">
+<img height="600" src="https://github.com/aniketgiriyalkar/Orders_Microservice/blob/master/OrdersSchema.png">
 <br>
 
 ### Sequelize 
