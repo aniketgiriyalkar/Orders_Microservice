@@ -1,4 +1,20 @@
 # Order Processing Service
+Order Processing Service is a learning-focused Express and Sequelize API for a
+normalized PostgreSQL order workflow. If you only want the essentials, focus on
+the schema, routes, controllers, seed data, tests, and Swagger setup.
+
+## Quick start
+
+1. Install PostgreSQL and the Node dependencies.
+2. Create and migrate the database.
+3. Seed the sample records.
+4. Run the server and inspect the `/ecommerce` routes.
+
+## If you modernize it later
+
+The cleanest upgrade path is `FastAPI` or `NestJS` with `Prisma`, `Zod`, and
+`Docker Compose`. That would keep the API contract explicit while removing a lot
+of boilerplate from the current training-era stack.
 Generating an order microservice
 
 
